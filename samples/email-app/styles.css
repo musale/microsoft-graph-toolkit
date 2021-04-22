@@ -1,0 +1,36 @@
+p {
+    background-color: #000000
+}
+body {
+  padding-top: 70px;
+}
+
+.main-sidebar {
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  z-index: 100;
+  padding: 70px 0 0 10px;
+}
+
+.main-left-sidebar {
+  left: 0;
+  border-right: 1px solid #d3d3d3;
+}
+
+.main-right-sidebar {
+  right: 0;
+  border-left: 1px solid #d3d3d3;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 70px);
+}
+
+.sidebar-nav li .nav-link {
+  color: #333;
+  font-weight: 500;
+  border-bottom: 1px solid;
+}
