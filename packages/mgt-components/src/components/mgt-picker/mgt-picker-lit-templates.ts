@@ -10,6 +10,7 @@ function personPickerMenuOption(person: Person, picker: MgtPicker): TemplateResu
     <fast-picker-menu-option
         .contentsTemplate="${personMenuContentTemplate(person)}"
         value="person-${person.id}"
+        personThing="Randpm"
         @click=${event => picker.handlePickerMenuClick(event, 'people', person)}>
     </fast-picker-menu-option>
     `;

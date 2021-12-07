@@ -15,6 +15,11 @@
     <script type="module" src="./fast-components.js"></script>
     <script type="module" src="./packages/mgt/dist/es6/index.js"></script>
     </script>
+    <style>
+      body{
+        margin: 5%;
+      }
+    </style>
   </head>
 
   <body>
@@ -62,14 +67,14 @@
     <mgt-people show-presence></mgt-people>
     <mgt-todo></mgt-todo> -->
 
-    <mgt-picker entity-types="channels,people" max-results="2,5">
+    <!-- <mgt-picker entity-types="channels,people" max-results="2,5">
       <template data-type="error-people"> <p>No poeplr are hiyaaa</p> </template>
     </mgt-picker>
     <script> 
       document.querySelector('mgt-picker').addEventListener('selectionChanged', e => {
           console.log(e.detail)
       });
-    </script>
+    </script> -->
 <!--
     <fast-picker
       default-selection=""
@@ -83,5 +88,27 @@
         <fast-picker-menu-option slot="footer-region"> post-option </fast-picker-menu-option>
       </fast-picker-menu>
     </fast-picker> -->
+
+    <!-- <mgt-generic-picker
+      default-selection=""
+      selection=""
+      options="apples,oranges,bananas,pears,pineapples,strawberries"
+      no-suggestions-text="No suggestions available"
+      suggestions-available-text="Suggestions available"
+      loading-text="Loading"
+      label="Select some things"
+      placeholder="Select some things">
+    </mgt-generic-picker> -->
+
+    <mgt-generic-picker entity-types="people,channels" max-results="5,4" default-selection="" selection="" label="Select some things">
+      <mgt-picker-menu>
+        <div>Group 1</div>
+        <mgt-picker-menu-option value="option 1"></mgt-picker-menu-option>
+        <mgt-picker-menu-option value="option 2"></mgt-picker-menu-option>
+        <div>Group 2</div>
+        <mgt-picker-menu-option value="option 3"></mgt-picker-menu-option>
+        <mgt-picker-menu-option value="option 4"></mgt-picker-menu-option>
+      </mgt-picker-menu>
+    </mgt-generic-picker>
   </body>
 </html>

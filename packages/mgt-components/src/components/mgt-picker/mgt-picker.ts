@@ -36,6 +36,7 @@ export class MgtPicker extends MgtTemplatedComponent {
     super();
     this.clearState();
     this.addEventListener('pickeriteminvoked', e => this.handlePickerMenuItemClick(e));
+    this.addEventListener('pickeroptioninvoked', e => this.handlePickerMenuItemSelected(e));
   }
 
   /**
@@ -294,6 +295,11 @@ export class MgtPicker extends MgtTemplatedComponent {
   }
 
   public handlePickerMenuClick(event: Event, entityType: string, value: SelectedEntity) {
+    console.log('Setting the scenario ', event.currentTarget);
+    // event.currentTarget.addEventListener('pickeriteminvoked', e =>
+    //   this.handlePickerMenuItemClick(e, entityType, value)
+    // );
+    this.fireCustomEvent('pickeriteminvoked', { entityType, value });
     switch (entityType) {
       case 'people':
         if (this._allowSingleSelect()) {
@@ -329,9 +335,42 @@ export class MgtPicker extends MgtTemplatedComponent {
    * @param entityType the entity name during the time of emitting the event.
    * @param value the entire entity value.
    */
-  public handlePickerMenuItemClick(event: Event, entityType?: string, value?: SelectedEntity) {
-    const element = event.target as HTMLInputElement;
-    console.log('value ', element.value);
+  public async handlePickerMenuItemClick(event: Event, entityType?: string, value?: SelectedEntity) {
+    console.log('handlePickerMenuItemClick ', event.type, entityType, value);
+    // const element = event.target as HTMLInputElement;
+    // const menuItem = element.value;
+    // console.log('This is crazty ', event.target);
+    // switch (true) {
+    //   case menuItem.startsWith('person'):
+    //     const personId = menuItem.slice(7);
+    //     console.log('clicked a person ', personId);
+    //     break;
+    //   case menuItem.startsWith('channel'):
+    //     // Use the channel Name i.e. HR Taskforce- General to get the General
+    //     // channel from the team HR Taskforce and purge it
+    //     const channelName = menuItem.slice(8);
+    //     console.log('Selected channel list ', this.selectedChannels);
+
+    //     await this._getChannelFromSelectionUsingName(channelName);
+    //     break;
+
+    //   default:
+    //     break;
+    // }
+    // console.log('value ', element.value);
+  }
+
+  private async _getChannelFromSelectionUsingName(name: string): Promise<DropdownItem> {
+    console.log('Calling to get channel ', this.selectedChannels);
+    for (let i = 0; i < this.selectedChannels.length; i++) {
+      const channel = this.selectedChannels[i];
+      console.log(channel);
+    }
+    return;
+  }
+
+  public async handlePickerMenuItemSelected(event: Event) {
+    console.log('Selected the option ', event.cancelBubble);
   }
 
   private _clearInput() {
@@ -344,8 +383,7 @@ export class MgtPicker extends MgtTemplatedComponent {
    * @returns true max-selected = '1' otherwise it is multiselect mode.
    */
   private _allowSingleSelect(): boolean {
-    if (this.picker.maxSelected === '1') return true;
-    return false;
+    return this.picker.maxSelected === '1';
   }
 
   /**
