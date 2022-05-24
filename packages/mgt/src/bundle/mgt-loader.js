@@ -46,12 +46,12 @@
 
   function addScript(src, onload) {
     var tag = document.createElement('script');
-    tag.setAttribute('src', encodeURI(src));
-
+    // tag.setAttribute('src', encodeURI(src));
+    tag.src = encodeURI(src);
     // if (onload) {
     //   tag.addEventListener("load", onload);
     // }
-
+    console.log(tag);
     document.write(tag.outerHTML());
   }
 })();
